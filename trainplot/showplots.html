@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="https://d14fo0winaifog.cloudfront.net/plotly-basic.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:600,400,300" rel="stylesheet" type="text/css">
+<title>TrainPlot</title>
+<!-- for json coloring -->
+<style>
+.json-key    { color: brown; }
+.json-value  { color: navy; }
+.json-string { color: olive; }
+
+h3 { font-family: 'Open Sans'; }
+</style>
+<script>
+
+// from http://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript/901144#901144
+function getParameterByName(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+      results = regex.exec(location.search);
+  return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+
+// from http://techdem.centerkey.com/2013/05/javascript-colorized-pretty-print-json.html
+var jsonPrettyPrint = {
+   replacer: function(match, pIndent, pKey, pVal, pEnd) {
+      var key = '<span class=json-key>';
+      var val = '<span class=json-value>';
+      var str = '<span class=json-string>';
+      var r = pIndent || '';
+      if (pKey)
+         r = r + key + pKey.replace(/[": ]/g, '') + '</span>: ';
+      if (pVal)
+         r = r + (pVal[0] == '"' ? str : val) + pVal + '</span>';
+      return r + (pEnd || '');
+      },
+   toHtml: function(obj) {
+      var jsonLine = /^( *)("[\w]+": )?("[^"]*"|[\w.+-]*)?([,[{])?$/mg;
+      return JSON.stringify(obj, null, 3)
+         .replace(/&/g, '&amp;').replace(/\\"/g, '&quot;')
+         .replace(/</g, '&lt;').replace(/>/g, '&gt;')
+         .replace(jsonLine, jsonPrettyPrint.replacer);
+      }
+   };
+
+function fetch(init) {
+  console.log("fetch");
+  var path = getParameterByName("path");
+  console.log(path)
+  $.getJSON(path, function(figures) {
+    console.log(figures);
+
+	var lastTrain = figures.accuracy.data[0].y[figures.accuracy.data[0].y.length -1]
+  	var lastTest = figures.accuracy.data[1].y[figures.accuracy.data[0].y.length -1]
+
+	document.getElementById("lastTrain").innerHTML = lastTrain.toFixed(2)//.toString()
+	document.getElementById("lastTest").innerHTML = lastTest.toFixed(2)//.toString()
+
+  	console.log(lastTrain)
+  	console.log(lastTest)
+
+    $.each(figures, function(key, figure) {
+    	key = key.replace(/ /g, '_')
+    	if (figure.data) {
+        	if ($("#"+key).length == 0) {
+        		$("#main").append('<div id="' + key + '" style="width:600px;height:400px;"> </div>');
+	        	FIG = document.getElementById(key);
+	        	Plotly.newPlot(FIG, figure.data, figure.layout);
+	        } else {
+	           FIG = document.getElementById(key);
+	           FIG.data = figure.data;
+	           FIG.layout = figure.layout;
+	           Plotly.redraw(FIG);
+	       	}
+      	} else {
+	        console.log(figure);
+	        if (init) {
+	          $('#infobox').append('<h3> Training Information </h3>');
+	          $('#infobox').append('<pre><code>' + jsonPrettyPrint.toHtml(figure) + '</code></pre>');
+	    	}
+     	}
+    });
+  });
+}
+
+$(document).ready(function() {
+  fetch(true);
+  timeInterval = setInterval(fetch, 5000*60); // 5min
+
+  $("#autorefresh").click(function() {
+      if ($("#autorefresh").prop("checked")) {
+        timeInterval = setInterval(fetch, 5000*60); // 5min
+      } else {
+        clearInterval(timeInterval);
+      }
+  });
+});
+
+</script>
+
+</head>
+<body>
+
+<div>
+<input id="autorefresh" type="checkbox" name="autorefresh" checked> Auto Refresh (every 5 min)
+</div>
+
+<div>
+<table id="lastTable">
+  <tr>
+	<td >Current Training Accuracy</td>
+	<td >(%) : </td>
+	<td id="lastTrain"></td>
+  </tr>
+  <tr>
+	<td >Current Test Accuracy</td>
+	<td >(%) : </td>
+	<td style="font-weight:bold", id="lastTest"></td>
+  </tr>
+</table>
+</div>
+
+<div id="infobox"></div>
+<div id="main"></div>
+</body>
+</html>

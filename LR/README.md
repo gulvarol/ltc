@@ -1,0 +1,1 @@
+This is a directory for files defining learning rate and weight decay schedules.

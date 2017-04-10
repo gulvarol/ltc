@@ -289,7 +289,7 @@ local testHook = function(self, path, region, hflip)
 	local input
 
 	if(opt.stream == 'flow') then
-		input = loadFlow(path, 'train')
+		input = loadFlow(path, 'test')
 	else
 		input = loadRGB(path, 'test')
 	end

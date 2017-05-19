@@ -2,7 +2,7 @@
 
 This is the Torch code for the following paper:
 
-Gül Varol, Ivan Laptev and Cordelia Schmid, Long-term Temporal Convolutions for Action Recognition, [arxiv:1604.04494](https://arxiv.org/abs/1604.04494), 2016.
+Gül Varol, Ivan Laptev and Cordelia Schmid, Long-term Temporal Convolutions for Action Recognition, PAMI 2017 [pdf](https://arxiv.org/abs/1604.04494).
 
 Check the [project page](http://www.di.ens.fr/willow/research/ltc/) for more materials.
 
@@ -76,11 +76,11 @@ TO-DO
 
 ## Citation
 If you use this code, please cite the following:
-> @article{varol16a,  
+> @article{varol17a,  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TITLE = {{Long-term Temporal Convolutions for Action Recognition}},  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUTHOR = {Varol, G{\"u}l and Laptev, Ivan and Schmid, Cordelia},  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JOURNAL =  {arXiv:1604.04494},  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YEAR = {2016}  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JOURNAL =  {IEEE Transactions on Pattern Analysis and Machine Intelligence},  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YEAR = {2017}  
 }
 
 ## Acknowledgements

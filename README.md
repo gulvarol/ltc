@@ -1,8 +1,8 @@
 # Long-term Temporal Convolutions (LTC)
 
-This is the Torch code for the following paper:
+This is the Torch code for the following [paper](https://arxiv.org/abs/1604.04494):
 
-Gül Varol, Ivan Laptev and Cordelia Schmid, Long-term Temporal Convolutions for Action Recognition, PAMI 2017 [pdf](https://arxiv.org/abs/1604.04494).
+Gül Varol, Ivan Laptev and Cordelia Schmid, Long-term Temporal Convolutions for Action Recognition, PAMI 2017.
 
 Check the [project page](http://www.di.ens.fr/willow/research/ltc/) for more materials.
 

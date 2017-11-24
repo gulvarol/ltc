@@ -6,29 +6,29 @@ Threads.serialization('threads.sharedserialize')
 -- For the data-loading details, look at donkey.lua
 -------------------------------------------------------------------------------
 do -- start K datathreads (donkeys)
-	if opt.nDonkeys > 0 then
-		local options = opt -- make an upvalue to serialize over to donkey threads
-		donkeys = Threads(
-		opt.nDonkeys,
-		function()
-			require 'torch'
-			paths.dofile('trainplot/TrainPlotter.lua')
-		end,
-		function(idx)
-			opt = options -- pass to all donkeys via upvalue
-			tid = idx
- 			local seed = opt.manualSeed + idx
-			torch.manualSeed(seed)
-			print(string.format('Starting donkey with id: %d seed: %d', tid, seed))
-			paths.dofile('donkey.lua')
-		end
-		);
-	else -- single threaded data loading. useful for debugging
-		paths.dofile('donkey.lua')
-		donkeys = {}
-		function donkeys:addjob(f1, f2) f2(f1()) end
-		function donkeys:synchronize() end
-	end
+    if opt.nDonkeys > 0 then
+        local options = opt -- make an upvalue to serialize over to donkey threads
+        donkeys = Threads(
+        opt.nDonkeys,
+        function()
+            require 'torch'
+            paths.dofile('trainplot/TrainPlotter.lua')
+        end,
+        function(idx)
+            opt = options -- pass to all donkeys via upvalue
+            tid = idx
+            local seed = opt.manualSeed + idx
+            torch.manualSeed(seed)
+            print(string.format('Starting donkey with id: %d seed: %d', tid, seed))
+            paths.dofile('donkey.lua')
+        end
+        );
+    else -- single threaded data loading. useful for debugging
+        paths.dofile('donkey.lua')
+        donkeys = {}
+        function donkeys:addjob(f1, f2) f2(f1()) end
+        function donkeys:synchronize() end
+    end
 end
 
 nClasses = nil

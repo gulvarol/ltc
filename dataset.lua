@@ -379,41 +379,41 @@ function dataset:get(i1, i2)
 end
 
 function dataset:computeAccuracy(scores)
-	local N, M, P, S, X 
-	-- Load dataLoader for videos ('self' dataLoader is for clips)
-	local testCacheVid = torch.load(paths.concat(opt.logRoot, opt.dataset, 'cache', opt.stream, 'testCache.t7'))
-	--assert(self.numSamples == scores:size(1))
+   local N, M, P, S, X 
+   -- Load dataLoader for videos ('self' dataLoader is for clips)
+   local testCacheVid = torch.load(paths.concat(opt.logRoot, opt.dataset, 'cache', opt.stream, 'testCache.t7'))
+   --assert(self.numSamples == scores:size(1))
 
-	-- Find clip-video correspondence
-	local clips = torch.Tensor(scores:size(1))
-	for i = 1, scores:size(1) do
-		N = ffi.string(torch.data(self.imagePath[i])) --v_ApplyEyeMakeup_g01_c01.avi_0017.avi
-		N = paths.basename(N, 'avi')                  --v_ApplyEyeMakeup_g01_c01.avi_0017
-		N = paths.basename(N, paths.extname(N))       --v_ApplyEyeMakeup_g01_c01
+   -- Find clip-video correspondence
+   local clips = torch.Tensor(scores:size(1))
+   for i = 1, scores:size(1) do
+      N = ffi.string(torch.data(self.imagePath[i])) --v_ApplyEyeMakeup_g01_c01.avi_0017.avi
+      N = paths.basename(N, 'avi')                  --v_ApplyEyeMakeup_g01_c01.avi_0017
+      N = paths.basename(N, paths.extname(N))       --v_ApplyEyeMakeup_g01_c01
       
-		for j = 1, testCacheVid.numSamples do
-			if(N == paths.basename(ffi.string(torch.data(testCacheVid.imagePath[j])), 'avi')) then
-				clips[i] = j
-				break
-			end
-		end
-	end
+      for j = 1, testCacheVid.numSamples do
+         if(N == paths.basename(ffi.string(torch.data(testCacheVid.imagePath[j])), 'avi')) then
+            clips[i] = j
+            break
+         end
+      end
+   end
 
-	-- Loop over videos to take mean over clip scores and compute accuracy
-	local acc = 0
-	for i = 1, testCacheVid.numSamples do
-		X = clips:eq(i)                       -- 0,1 vector of clips belonging to same video
-		if(X:any()) then                      -- normally always true
-			X = torch.nonzero(X)              -- indices of clips belonging to same video
-			S = scores:index(1,X:select(2,1)) -- scores of clips from the same video
-			S = S:mean(1)                     -- mean over clips
-			M, P = torch.max(S, 2)            -- max score -> predicted class
-			if(P:squeeze() == testCacheVid.imageClass[i]) then -- pred==gt
-				acc = acc + 1
-			end
-		end
-	end
-	return 100*acc/testCacheVid.numSamples
+   -- Loop over videos to take mean over clip scores and compute accuracy
+   local acc = 0
+   for i = 1, testCacheVid.numSamples do
+      X = clips:eq(i)                       -- 0,1 vector of clips belonging to same video
+      if(X:any()) then                      -- normally always true
+         X = torch.nonzero(X)              -- indices of clips belonging to same video
+         S = scores:index(1,X:select(2,1)) -- scores of clips from the same video
+         S = S:mean(1)                     -- mean over clips
+         M, P = torch.max(S, 2)            -- max score -> predicted class
+         if(P:squeeze() == testCacheVid.imageClass[i]) then -- pred==gt
+            acc = acc + 1
+         end
+      end
+   end
+   return 100*acc/testCacheVid.numSamples
 end
 
 return dataset

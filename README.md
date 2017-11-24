@@ -74,6 +74,9 @@ Note that the results are sensitive to the learning rate (LR) schedule. You can 
 ## Pre-trained models
 TO-DO
 
+## IDT features
+You can find the results of Fisher Vector encoding of the [improved dense trajectory features](http://lear.inrialpes.fr/~wang/improved_trajectories) under the `IDT/` directory.
+
 ## Citation
 If you use this code, please cite the following:
 > @article{varol17a,  

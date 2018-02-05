@@ -85,7 +85,7 @@ Note that the results are sensitive to the learning rate (LR) schedule. You can 
 
 
 ## Pre-trained models
-We provide the 71x71 RGB networks that are used for the final results. 60f + 100f was used. We provide the initialization with 16f for convenience. You can find the download links under `../models/download_pretrained_rgb_models.sh`. See [here](https://github.com/gulvarol/ltc#preparation), for mean files. If you need other resolutions, please send an e-mail.
+We provide the 71x71 RGB networks that are used for the final results. 60f + 100f was used. We provide the initialization with 16f for convenience. You can find the download links under `models/download_pretrained_rgb_models.sh`. See [here](https://github.com/gulvarol/ltc#4-c3d-model-in-torch), for mean files. If you need other resolutions, please send an e-mail.
 
 ## IDT features
 You can find the results of Fisher Vector encoding of the [improved dense trajectory features](http://lear.inrialpes.fr/~wang/improved_trajectories) under the `IDT/` directory.

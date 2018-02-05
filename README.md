@@ -1,12 +1,8 @@
 # Long-term Temporal Convolutions (LTC)
+[Gül Varol](http://www.di.ens.fr/~varol/), [Ivan Laptev](http://www.di.ens.fr/~laptev/) and [Cordelia Schmid](http://lear.inrialpes.fr/~schmid/), *Long-term Temporal Convolutions for Action Recognition*, PAMI 2017. [[Project page]](http://www.di.ens.fr/willow/research/ltc/) [[arXiv]](https://arxiv.org/abs/1604.04494)
 
-This is the Torch code for the following [paper](https://arxiv.org/abs/1604.04494):
+<p align="center"><img src="http://www.di.ens.fr/willow/research/ltc/images/frontcrawl.png" align="middle" width="300" /><img src="http://www.di.ens.fr/willow/research/ltc/images/breaststroke.png" align="middle" width="300" /></p>
 
-Gül Varol, Ivan Laptev and Cordelia Schmid, Long-term Temporal Convolutions for Action Recognition, PAMI 2017.
-
-Check the [project page](http://www.di.ens.fr/willow/research/ltc/) for more materials.
-
-Contact: [Gül Varol](http://www.di.ens.fr/~varol/).
 
 ## Preparation 
 
@@ -27,7 +23,7 @@ We extracted the Brox flow with [this code](https://github.com/gulvarol/flow_too
 
 See the `c3dtorch` directory to find the scripts that are used to convert C3D model in caffe to torch, as well as converting the mean files.
 
-The [c3d.t7 (305MB)](https://github.com/gulvarol/ltc/releases/download/c3d/c3d.t7) model file is produced by running `convert_c3d_caffe2torch.lua` with the modified version of [loadcaffe](https://github.com/szagoruyko/loadcaffe) that is provided. Special thanks to [Sergey Zagoruyko](https://github.com/szagoruyko) for the help. 
+The [c3d.t7 (305MB)](https://lsh.paris.inria.fr/LTC/c3d.t7) model file is produced by running `convert_c3d_caffe2torch.lua` with the modified version of [loadcaffe](https://github.com/szagoruyko/loadcaffe) that is provided. Special thanks to [Sergey Zagoruyko](https://github.com/szagoruyko) for the help. 
 
 The file [sport1m_train16_128_mean.binaryproto](https://github.com/facebook/C3D/blob/master/C3D-v1.0/examples/c3d_feature_extraction) is converted to `data/volmean_sports1m.t7` using the [caffemodel2json](https://github.com/vadimkantorov/caffemodel2json) tool from [Vadim Kantorov](https://github.com/vadimkantorov). `create_mean_files.lua` further creates mean files used for 58x58 and 71x71 resolutions. We subtract them from each input frame.
  

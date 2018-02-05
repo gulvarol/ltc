@@ -1,5 +1,7 @@
 # Long-term Temporal Convolutions (LTC)
-[Gül Varol](http://www.di.ens.fr/~varol/), [Ivan Laptev](http://www.di.ens.fr/~laptev/) and [Cordelia Schmid](http://lear.inrialpes.fr/~schmid/), *Long-term Temporal Convolutions for Action Recognition*, PAMI 2017. [[Project page]](http://www.di.ens.fr/willow/research/ltc/) [[arXiv]](https://arxiv.org/abs/1604.04494)
+[Gül Varol](http://www.di.ens.fr/~varol/), [Ivan Laptev](http://www.di.ens.fr/~laptev/) and [Cordelia Schmid](http://lear.inrialpes.fr/~schmid/), *Long-term Temporal Convolutions for Action Recognition*, PAMI 2017.
+
+[[Project page]](http://www.di.ens.fr/willow/research/ltc/) [[arXiv]](https://arxiv.org/abs/1604.04494)
 
 <p align="center"><img src="http://www.di.ens.fr/willow/research/ltc/images/frontcrawl.png" align="middle" width="300" /><img src="http://www.di.ens.fr/willow/research/ltc/images/breaststroke.png" align="middle" width="300" /></p>
 

@@ -1,5 +1,5 @@
 # Long-term Temporal Convolutions (LTC)
-[Gül Varol](http://www.di.ens.fr/~varol/), [Ivan Laptev](http://www.di.ens.fr/~laptev/) and [Cordelia Schmid](http://lear.inrialpes.fr/~schmid/), *Long-term Temporal Convolutions for Action Recognition*, PAMI 2017.
+[Gül Varol](http://www.di.ens.fr/~varol/), [Ivan Laptev](http://www.di.ens.fr/~laptev/) and [Cordelia Schmid](http://lear.inrialpes.fr/~schmid/), *Long-term Temporal Convolutions for Action Recognition*, PAMI 2018.
 
 [[Project page]](http://www.di.ens.fr/willow/research/ltc/) [[arXiv]](https://arxiv.org/abs/1604.04494)
 
@@ -92,12 +92,18 @@ You can find the results of Fisher Vector encoding of the [improved dense trajec
 
 ## Citation
 If you use this code, please cite the following:
-> @article{varol17pami,  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TITLE = {Long-term Temporal Convolutions for Action Recognition},  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AUTHOR = {Varol, G{\"u}l and Laptev, Ivan and Schmid, Cordelia},  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;JOURNAL =  {IEEE Transactions on Pattern Analysis and Machine Intelligence},  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;YEAR = {2017}  
+```
+@ARTICLE{varol18_ltc,  
+  title   = {Long-term Temporal Convolutions for Action Recognition},  
+  author  = {Varol, G{\"u}l and Laptev, Ivan and Schmid, Cordelia},  
+  journal = {IEEE Transactions on Pattern Analysis and Machine Intelligence},  
+  year    = {2018},  
+  volume  = {40},  
+  number  = {6},  
+  pages   = {1510--1517},  
+  doi     = {10.1109/TPAMI.2017.2712608}  
 }
+```
 
 ## Acknowledgements
 This code is largely built on the ImageNet training example [https://github.com/soumith/imagenet-multiGPU.torch](https://github.com/soumith/imagenet-multiGPU.torch) by [Soumith Chintala](https://github.com/soumith/).
